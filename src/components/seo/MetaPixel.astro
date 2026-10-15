@@ -1,13 +1,16 @@
 ---
 /**
- * Meta Pixel. Se define `fbq` de inmediato (los eventos quedan en cola) y la librería se descarga
- * después del evento `load`, para no competir con el contenido de la primera pantalla.
+ * Meta Pixel. `fbq` se define de inmediato y los eventos (PageView, Contact) quedan en cola; la
+ * librería (~114 KB) se descarga en la primera interacción (scroll, toque, tecla) o, si no hay
+ * ninguna, a los `fallbackMs`. Así no compite con la primera pantalla en móviles lentos.
+ * Un clic en un CTA cuenta como interacción, por lo que ningún Contact se pierde.
  * Sin PUBLIC_META_PIXEL_ID no se renderiza nada.
  */
 const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
+const fallbackMs = 5000;
 ---
 
-{pixelId && <script is:inline define:vars={{ pixelId }}>
+{pixelId && <script is:inline define:vars={{ pixelId, fallbackMs }}>
   (function (w, d) {
     if (w.fbq) return;
     var n = (w.fbq = function () {
@@ -22,13 +25,22 @@ const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
     w.fbq('init', pixelId);
     w.fbq('track', 'PageView');
 
+    var events = ['pointerdown', 'scroll', 'keydown', 'touchstart'];
+    var timer;
     function load() {
+      clearTimeout(timer);
+      events.forEach(function (e) {
+        w.removeEventListener(e, load, true);
+      });
+      if (d.querySelector('script[src*="fbevents.js"]')) return;
       var s = d.createElement('script');
       s.async = true;
       s.src = 'https://connect.facebook.net/en_US/fbevents.js';
       d.head.appendChild(s);
     }
-    if (d.readyState === 'complete') load();
-    else w.addEventListener('load', load, { once: true });
+    events.forEach(function (e) {
+      w.addEventListener(e, load, { capture: true, once: true, passive: true });
+    });
+    timer = setTimeout(load, fallbackMs);
   })(window, document);
 </script>}

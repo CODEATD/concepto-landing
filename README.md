@@ -95,7 +95,11 @@ Copia `.env.example` a `.env` en local. En Netlify: _Site configuration → Envi
 
 ## Medición
 
-- `PageView` al cargar. La librería del Pixel se descarga después del evento `load`.
+- `PageView` se encola al cargar. La librería del Pixel (~114 KB) se descarga en la primera
+  interacción (scroll, toque, tecla) o a los 5 s; los eventos en cola se envían entonces. Así no
+  compite con la primera pantalla (Lighthouse móvil con Pixel: ~65 cargándolo al `load`, 99 diferido).
+  Contrapartida: no se registra el PageView de quien se va sin interactuar en menos de 5 s.
+  El tiempo se ajusta en `fallbackMs` de `src/components/seo/MetaPixel.astro`.
 - Cada clic en un `a[data-cta]` (`header`, `hero`, `plan`, `final`, `sticky`) envía `Contact` al
   Pixel y a `/api/capi` con el mismo `eventID`. Meta deduplica.
 - Si la URL trae `utm_content`, se agrega al mensaje de WhatsApp como `[ref: …]`.
