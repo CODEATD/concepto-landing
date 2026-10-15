@@ -6,7 +6,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://todoincluido.elconceptodigital.com',
   output: 'static',
-  integrations: [sitemap()],
+  integrations: [
+    // Solo páginas indexables (privacidad y 404 llevan noindex).
+    sitemap({ filter: (page) => !/\/(privacidad|404)$/.test(page) }),
+  ],
   trailingSlash: 'never',
   build: {
     // Una sola página: el CSS va inline y no bloquea el render con una petición extra.

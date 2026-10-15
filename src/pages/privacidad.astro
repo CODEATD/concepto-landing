@@ -1,0 +1,49 @@
+---
+import Simple from '@/layouts/Simple.astro';
+import { landing } from '@/data';
+
+const { brand, mainSite } = landing.site;
+---
+
+<!-- PENDIENTE: borrador base. Debe revisarlo el equipo legal antes de publicar la campaña. -->
+<Simple
+  title={`Política de privacidad · ${brand}`}
+  description={`Cómo ${brand} trata los datos de quienes visitan esta página.`}
+  noindex
+>
+  <h1>Política de privacidad</h1>
+  <p>
+    Esta página explica qué datos se recogen cuando visitas la landing del Servicio Todo Incluido de
+    {brand} y para qué se usan.
+  </p>
+
+  <h2>Qué datos recogemos</h2>
+  <p>
+    Esta página no tiene formularios. Cuando haces clic en un botón de contacto se abre WhatsApp y
+    la conversación continúa en esa aplicación, sujeta a sus propias condiciones.
+  </p>
+  <p>
+    Usamos el Meta Pixel y la API de Conversiones de Meta para medir el rendimiento de nuestros
+    anuncios. Estas herramientas pueden registrar tu dirección IP, el navegador que usas, la página
+    visitada, los botones en los que haces clic e identificadores de cookies de Meta (_fbp, _fbc).
+  </p>
+
+  <h2>Para qué los usamos</h2>
+  <ul>
+    <li>Saber cuántas personas llegan desde nuestros anuncios y cuántas nos contactan.</li>
+    <li>Mejorar la segmentación y el presupuesto de nuestras campañas.</li>
+  </ul>
+  <p>No vendemos tus datos ni los usamos para otros fines.</p>
+
+  <h2>Tus opciones</h2>
+  <p>
+    Puedes bloquear o borrar las cookies desde la configuración de tu navegador y gestionar tus
+    preferencias de anuncios en la configuración de tu cuenta de Facebook o Instagram.
+  </p>
+
+  <h2>Contacto</h2>
+  <p>
+    Para cualquier consulta sobre tus datos, escríbenos por los canales indicados en
+    <a href={mainSite}>{mainSite.replace('https://', '')}</a>.
+  </p>
+</Simple>
