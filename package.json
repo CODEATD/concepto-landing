@@ -14,7 +14,8 @@
     "format:check": "prettier --check .",
     "astro": "astro",
     "og": "node scripts/generate-og.mjs",
-    "qa:compare": "node qa/compare.mjs"
+    "qa:compare": "node qa/compare.mjs",
+    "test": "node --test \"tests/**/*.test.mts\""
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@netlify/functions": "^6.0.2",
     "playwright": "^1.64.1",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.1",

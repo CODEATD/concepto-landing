@@ -1,6 +1,7 @@
 ---
 import { Font } from 'astro:assets';
 import Seo from '@/components/seo/Seo.astro';
+import MetaPixel from '@/components/seo/MetaPixel.astro';
 import '@/styles/tokens.css';
 import '@/styles/global.css';
 
@@ -24,11 +25,17 @@ const seo = Astro.props;
     <Font cssVariable="--font-bebas" />
 
     <Seo {...seo} />
+    <MetaPixel />
     <slot name="head" />
   </head>
   <body>
     <div class="page">
       <slot />
     </div>
+
+    <script>
+      import { initTracking } from '@/lib/tracking';
+      initTracking();
+    </script>
   </body>
 </html>
