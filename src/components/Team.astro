@@ -6,21 +6,35 @@ import TeamCard from './TeamCard.astro';
 
 <section class="team-section" aria-labelledby="team-title">
   <div class="team__head rv">
-    <span class="eyebrow">Equipo y autoridad</span>
-    <h2 id="team-title" class="h2">
-      El equipo <span class="silver serif">detrás</span> de tu marca
-    </h2>
-    <p class="team__lead">
-      Especialistas senior operando tu estrategia día a día, bajo la dirección directa de nuestros
-      líderes.
-    </p>
+    <div class="team__intro">
+      <span class="eyebrow">Equipo y autoridad</span>
+      <h2 id="team-title" class="h2">
+        El equipo <span class="silver serif">detrás</span> de tu marca
+      </h2>
+      <p class="team__lead">
+        Especialistas senior operando tu estrategia día a día, bajo la dirección directa de nuestros
+        líderes.
+      </p>
+    </div>
+
+    <!-- Escritorio (puntero fino): flechas en lugar del gesto de deslizar -->
+    <div class="team__nav" data-team-nav>
+      <button type="button" class="team__arrow" data-dir="-1" aria-label="Integrantes anteriores">
+        <Icon name="arrow-left" size={18} />
+      </button>
+      <button type="button" class="team__arrow" data-dir="1" aria-label="Más integrantes">
+        <Icon name="arrow-right" size={18} />
+      </button>
+    </div>
   </div>
 
-  <ul class="team" role="list" tabindex="0" aria-label="Integrantes del equipo">
-    {landing.team.map((member) => (
-      <TeamCard {...member} />
-    ))}
-  </ul>
+  <div class="team-wrap is-start" data-team-wrap>
+    <ul class="team" role="list" tabindex="0" aria-label="Integrantes del equipo" data-team-track>
+      {landing.team.map((member) => (
+        <TeamCard {...member} />
+      ))}
+    </ul>
+  </div>
 
   <p class="team__hint">
     <Icon name="arrow-right" size={14} />
@@ -36,6 +50,105 @@ import TeamCard from './TeamCard.astro';
   </div>
 </section>
 
+<script>
+  // Carrusel del equipo: flechas y arrastre con ratón en escritorio.
+  // En táctil basta el scroll nativo con scroll-snap.
+  const track = document.querySelector<HTMLElement>('[data-team-track]');
+  const wrap = document.querySelector<HTMLElement>('[data-team-wrap]');
+  const nav = document.querySelector<HTMLElement>('[data-team-nav]');
+  const [prev, next] = nav ? [...nav.querySelectorAll<HTMLButtonElement>('.team__arrow')] : [];
+
+  if (track && wrap && nav && prev && next) {
+    const behavior: ScrollBehavior = matchMedia('(prefers-reduced-motion: reduce)').matches
+      ? 'auto'
+      : 'smooth';
+    const cards = () => [...track.children] as HTMLElement[];
+    const maxScroll = () => track.scrollWidth - track.clientWidth;
+
+    const update = () => {
+      const max = maxScroll();
+      const atStart = track.scrollLeft <= 1;
+      const atEnd = track.scrollLeft >= max - 1;
+      nav.toggleAttribute('data-off', max <= 1);
+      prev.disabled = atStart;
+      next.disabled = atEnd;
+      // Los degradados de los bordes solo aparecen donde queda contenido por ver.
+      wrap.classList.toggle('is-start', atStart);
+      wrap.classList.toggle('is-end', atEnd);
+    };
+
+    // Avanza una "página" de tarjetas, dejando la última visible como referencia.
+    for (const arrow of [prev, next]) {
+      arrow.addEventListener('click', () => {
+        const [first, second] = cards();
+        const step = second ? second.offsetLeft - first.offsetLeft : track.clientWidth;
+        const perPage = Math.max(1, Math.floor(track.clientWidth / step) - 1);
+        track.scrollBy({ left: Number(arrow.dataset.dir) * step * perPage, behavior });
+      });
+    }
+
+    // Arrastre con ratón: sin snap mientras se arrastra; al soltar va a la tarjeta más cercana.
+    let pointerId: number | null = null;
+    let startX = 0;
+    let startScroll = 0;
+    let dragged = false;
+
+    track.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'mouse' || event.button !== 0) return;
+      pointerId = event.pointerId;
+      startX = event.clientX;
+      startScroll = track.scrollLeft;
+      dragged = false;
+    });
+
+    track.addEventListener('pointermove', (event) => {
+      if (event.pointerId !== pointerId) return;
+      const dx = event.clientX - startX;
+      if (!dragged) {
+        if (Math.abs(dx) < 5) return;
+        dragged = true;
+        track.setPointerCapture(event.pointerId);
+        track.classList.add('is-dragging');
+      }
+      track.scrollLeft = startScroll - dx;
+    });
+
+    const release = (event: PointerEvent) => {
+      if (event.pointerId !== pointerId) return;
+      pointerId = null;
+      if (!dragged) return;
+      const pad = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
+      const max = maxScroll();
+      const target = cards()
+        .map((card) => Math.min(Math.max(card.offsetLeft - pad, 0), max))
+        .reduce((best, point) =>
+          Math.abs(point - track.scrollLeft) < Math.abs(best - track.scrollLeft) ? point : best,
+        );
+      track.scrollTo({ left: target, behavior });
+      // Reactiva el snap al terminar la animación (timeout por si no hay `scrollend`).
+      const restore = () => track.classList.remove('is-dragging');
+      track.addEventListener('scrollend', restore, { once: true });
+      setTimeout(restore, 600);
+    };
+    track.addEventListener('pointerup', release);
+    track.addEventListener('pointercancel', release);
+
+    // Sin arrastre nativo de imágenes ni clic accidental al soltar tras arrastrar.
+    track.addEventListener('dragstart', (event) => event.preventDefault());
+    track.addEventListener(
+      'click',
+      (event) => {
+        if (dragged) event.preventDefault();
+      },
+      true,
+    );
+
+    track.addEventListener('scroll', update, { passive: true });
+    new ResizeObserver(update).observe(track);
+    update();
+  }
+</script>
+
 <style>
   .team-section {
     padding: 56px 0;
@@ -44,6 +157,12 @@ import TeamCard from './TeamCard.astro';
     max-width: var(--container);
     margin: 0 auto 28px;
     padding: 0 var(--gutter);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .team__intro {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -56,11 +175,42 @@ import TeamCard from './TeamCard.astro';
     color: var(--light-gray);
   }
 
-  /* Carrusel horizontal con scroll-snap */
-  .team {
-    list-style: none;
+  /* Degradados en los bordes: indican que hay más tarjetas sin cortarlas en seco */
+  .team-wrap {
+    position: relative;
     max-width: 1240px;
     margin: 0 auto;
+  }
+  .team-wrap::before,
+  .team-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 8px; /* el padding inferior de .team */
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out);
+  }
+  .team-wrap::before {
+    left: 0;
+    width: 40px;
+    background: linear-gradient(90deg, var(--black), transparent);
+  }
+  .team-wrap::after {
+    right: 0;
+    width: 96px;
+    background: linear-gradient(270deg, var(--black), transparent);
+  }
+  .team-wrap.is-start::before,
+  .team-wrap.is-end::after {
+    opacity: 0;
+  }
+
+  /* Carrusel horizontal con scroll-snap */
+  .team {
+    position: relative; /* referencia de offsetLeft para el script */
+    list-style: none;
+    margin: 0;
     padding: 0 var(--gutter) 8px;
     display: flex;
     gap: 12px;
@@ -71,6 +221,11 @@ import TeamCard from './TeamCard.astro';
   }
   .team::-webkit-scrollbar {
     display: none;
+  }
+  .team.is-dragging {
+    scroll-snap-type: none;
+    cursor: grabbing;
+    user-select: none;
   }
   .team:focus-visible {
     outline: 2px solid var(--yellow-500);
@@ -86,6 +241,56 @@ import TeamCard from './TeamCard.astro';
     gap: 8px;
     font-size: 12px;
     color: var(--medium-gray-aa);
+  }
+
+  /* Flechas solo con ratón/trackpad; en táctil se muestra la pista de deslizar */
+  .team__nav {
+    display: none;
+    flex-shrink: 0;
+    gap: 8px;
+  }
+  .team__arrow {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border-radius: var(--r-pill);
+    background: var(--jet-black);
+    border: 1px solid var(--smoky-black);
+    color: var(--whisper-gray);
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      opacity 0.2s;
+  }
+  .team__arrow:hover:not(:disabled) {
+    background: var(--graphite-black);
+    border-color: var(--ash-gray);
+  }
+  .team__arrow:focus-visible {
+    outline: 2px solid var(--yellow-500);
+    outline-offset: 3px;
+  }
+  .team__arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .team__nav {
+      display: flex;
+    }
+    .team__nav[data-off] {
+      display: none;
+    }
+    .team {
+      cursor: grab;
+    }
+    .team__hint {
+      display: none;
+    }
   }
 
   .quote-wrap {

@@ -134,7 +134,7 @@ deduplicados.
 
 - [ ] Logo SVG oficial (hoy es texto en Bebas Neue; al cambiarlo, quitar la fuente en
       `astro.config.mjs` y regenerar la imagen OG)
-- [ ] Foto de Romano Landini
+- [x] Foto de Romano Landini
 - [ ] 5 fotos de "proveedores" para las burbujas del plan (hoy son siluetas)
 - [ ] Validar los precios de ejemplo de las burbujas
 - [ ] Descripción de "Planificación estratégica" (provisional)
