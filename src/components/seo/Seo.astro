@@ -21,7 +21,9 @@ const {
 } = Astro.props;
 
 const { site, price, faqs, whatsapp } = landing;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+// Con build.format 'file' la ruta llega como /index.html o /privacidad.html; Netlify sirve URLs limpias.
+const cleanPath = Astro.url.pathname.replace(/(index)?\.html$/, '');
+const canonical = new URL(cleanPath, Astro.site);
 const imageUrl = new URL(image, Astro.site);
 
 const jsonLd = {
