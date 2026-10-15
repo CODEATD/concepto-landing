@@ -39,6 +39,9 @@
   --yellow-10: rgba(250, 217, 26, 0.1);
   --yellow-35: rgba(250, 217, 26, 0.35);
 
+  /* --medium-gray ajustado para texto pequeño: 4.6:1 sobre negro (WCAG AA) */
+  --medium-gray-aa: #767676;
+
   /* Tipografía — las familias las registra la Fonts API en astro.config.mjs */
   --font-sans: var(--font-inter); /* UI, títulos (500), párrafos */
   --font-serif: var(--font-playfair); /* acentos en cursiva 400 */
