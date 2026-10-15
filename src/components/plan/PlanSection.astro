@@ -1,0 +1,94 @@
+---
+import Icon from '../ui/Icon.astro';
+import PlanStage from './PlanStage.astro';
+import PlanCard from './PlanCard.astro';
+---
+
+<section id="plan" class="plan" aria-labelledby="plan-title">
+  <div class="dots plan__dots" aria-hidden="true"></div>
+  <div class="plan__glow" aria-hidden="true"></div>
+
+  <div class="plan__inner">
+    <div class="plan__head rv">
+      <p class="plan__pill">
+        <Icon name="chat" size={15} stroke="var(--yellow-500)" />
+        Un solo plan
+      </p>
+      <h2 id="plan-title" class="plan__title">
+        Marketing <span class="silver serif">All in One</span>
+        <br />a un precio <span class="accent">irresistible</span>
+      </h2>
+      <p class="plan__lead">
+        Sin sueldos internos ni proveedores sueltos: un equipo trabajando en tu marca cada semana.
+      </p>
+    </div>
+
+    <PlanStage>
+      <PlanCard />
+    </PlanStage>
+  </div>
+</section>
+
+<style>
+  .plan {
+    position: relative;
+    overflow: hidden;
+    padding: 56px 0 8px;
+  }
+  .plan__dots {
+    -webkit-mask-image: radial-gradient(ellipse 60% 45% at 50% 55%, #000 10%, transparent 70%);
+    mask-image: radial-gradient(ellipse 60% 45% at 50% 55%, #000 10%, transparent 70%);
+  }
+  .plan__glow {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    width: 520px;
+    height: 520px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(250, 217, 26, 0.1), transparent 65%);
+    pointer-events: none;
+  }
+  .plan__inner {
+    position: relative;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .plan__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .plan__pill {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    background: var(--jet-black);
+    border: 1px solid var(--smoky-black);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--whisper-gray);
+  }
+  .plan__title {
+    margin: 0;
+    max-width: 720px;
+    font-size: clamp(32px, 4.4vw, 52px);
+    line-height: 1.12;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+  .plan__lead {
+    margin: 0;
+    max-width: 560px;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--light-gray);
+  }
+</style>

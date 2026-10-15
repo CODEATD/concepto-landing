@@ -1,0 +1,165 @@
+---
+import { landing } from '@/data';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+const { price, plan } = landing;
+---
+
+<div class="plan-card rv glow">
+  <div class="plan-card__line" aria-hidden="true"></div>
+  <div class="plan-card__body">
+    <div class="plan-card__top">
+      <h3 class="plan-card__name">Plan</h3>
+      <span class="plan-card__badge">Servicio Todo Incluido</span>
+    </div>
+
+    <div class="plan-card__price">
+      <span class="plan-card__label">Inversión</span>
+      <p class="plan-card__amount">
+        <span class="plan-card__value">{price.amount}</span>
+        <span class="plan-card__period">
+          {price.currency} / {price.period}
+        </span>
+      </p>
+    </div>
+
+    <div class="plan-card__divider" aria-hidden="true"></div>
+
+    <ul class="plan-card__list">
+      {plan.includes.map((item) => (
+        <li>
+          <Icon name="check" size={18} strokeWidth={2.4} class="plan-card__check" />
+          {item}
+        </li>
+      ))}
+    </ul>
+
+    <Button cta="plan" class="plan-card__cta">
+      ¡LO QUIERO!
+    </Button>
+
+    <p class="plan-card__note">
+      <Icon name="chat" size={15} class="plan-card__note-icon" />
+      Te escribe Alain directo por WhatsApp
+    </p>
+  </div>
+</div>
+
+<style>
+  .plan-card {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    min-width: 0;
+    border-radius: var(--r-card-lg);
+    border: 1px solid var(--smoky-black);
+    background: linear-gradient(180deg, var(--jet-black) 0%, var(--black) 100%);
+    overflow: hidden;
+    animation-delay: 0.3s;
+  }
+  .plan-card__line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--yellow-500), transparent);
+  }
+  .plan-card__body {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .plan-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .plan-card__name {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dusty-gray);
+  }
+  .plan-card__badge {
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    background: var(--yellow-10);
+    border: 1px solid var(--yellow-35);
+    color: var(--yellow-500);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .plan-card__price {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .plan-card__label {
+    font-size: 13px;
+    color: var(--dusty-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .plan-card__amount {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .plan-card__value {
+    font-size: 44px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .plan-card__period {
+    font-size: 15px;
+    color: var(--silver-gray);
+  }
+  .plan-card__divider {
+    height: 1px;
+    background: var(--jet-gray);
+  }
+  .plan-card__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--whisper-gray);
+  }
+  .plan-card__list li {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .plan-card__check {
+    flex: none;
+    color: var(--yellow-500);
+  }
+  .plan-card__cta {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    min-height: 56px;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+  }
+  .plan-card__note {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--dusty-gray);
+    text-align: center;
+  }
+  .plan-card__note-icon {
+    flex: none;
+  }
+</style>
