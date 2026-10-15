@@ -1,0 +1,34 @@
+---
+/**
+ * Meta Pixel. Se define `fbq` de inmediato (los eventos quedan en cola) y la librería se descarga
+ * después del evento `load`, para no competir con el contenido de la primera pantalla.
+ * Sin PUBLIC_META_PIXEL_ID no se renderiza nada.
+ */
+const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
+---
+
+{pixelId && <script is:inline define:vars={{ pixelId }}>
+  (function (w, d) {
+    if (w.fbq) return;
+    var n = (w.fbq = function () {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+    });
+    if (!w._fbq) w._fbq = n;
+    n.push = n;
+    n.loaded = true;
+    n.version = '2.0';
+    n.queue = [];
+
+    w.fbq('init', pixelId);
+    w.fbq('track', 'PageView');
+
+    function load() {
+      var s = d.createElement('script');
+      s.async = true;
+      s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+      d.head.appendChild(s);
+    }
+    if (d.readyState === 'complete') load();
+    else w.addEventListener('load', load, { once: true });
+  })(window, document);
+</script>}
