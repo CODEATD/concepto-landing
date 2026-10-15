@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://todoincluido.elconceptodigital.com',
+  site: 'https://allinone.elconceptodigital.com',
   output: 'static',
   integrations: [
     // Solo páginas indexables (privacidad y 404 llevan noindex).

@@ -4,7 +4,7 @@ Para el equipo que monta y optimiza los anuncios de "Servicio Todo Incluido".
 
 ## Qué es la landing
 
-Una página única en `https://todoincluido.elconceptodigital.com`, pensada para tráfico móvil desde
+Una página única en `https://allinone.elconceptodigital.com`, pensada para tráfico móvil desde
 Instagram y Facebook. Tiene **una sola conversión: abrir el WhatsApp de Alain** con un mensaje ya
 escrito. Hay cinco botones que llevan ahí (menú, hero, plan, CTA final y barra fija en móvil) y
 todos se miden.
@@ -47,7 +47,7 @@ valor y lo añadimos en cPanel. Se verifica el dominio principal y eso cubre el 
 - **Objetivo:** Clientes potenciales, con ubicación de conversión **Sitio web** y evento
   **Contact**. Meta optimiza mejor a partir de ~50 conversiones por semana por conjunto de anuncios;
   con poco presupuesto, mejor pocos conjuntos que muchos.
-- **URL del sitio:** `https://todoincluido.elconceptodigital.com`
+- **URL del sitio:** `https://allinone.elconceptodigital.com`
 - **Parámetros de URL** (campo _Parámetros de URL_ del anuncio):
 
   ```text

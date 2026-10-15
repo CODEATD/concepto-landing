@@ -6,7 +6,7 @@ Landing de campaña para Meta Ads (tráfico mayormente móvil desde Instagram/Fa
 - **Stack:** Astro 7 (salida estática) · TypeScript strict · CSS con scope por componente · sin
   framework de UI ni librerías de animación.
 - **Diseño fuente de verdad:** `../concepto-landing-handoff/reference/index.html`.
-- **Producción:** Netlify → `todoincluido.elconceptodigital.com`.
+- **Producción:** Netlify → `allinone.elconceptodigital.com`.
 
 ## Requisitos
 
@@ -124,9 +124,9 @@ Guía para el equipo de anuncios (qué se mide, qué datos hacen falta, checklis
    define el comando (`npm run build`), la carpeta (`dist`) y la versión de Node. Carga las
    variables de entorno y despliega.
 3. **Dominio en Netlify:** _Domain management → Add a domain_ →
-   `todoincluido.elconceptodigital.com`.
+   `allinone.elconceptodigital.com`.
 4. **DNS en cPanel:** _Zone Editor_ → `elconceptodigital.com` → _Add Record_:
-   - Tipo `CNAME` · Nombre `todoincluido` · Destino `<tu-sitio>.netlify.app`
+   - Tipo `CNAME` · Nombre `allinone` · Destino `<tu-sitio>.netlify.app`
 5. Cuando el DNS propague, Netlify emite el certificado HTTPS (Let's Encrypt) automáticamente.
 
 ## Git
