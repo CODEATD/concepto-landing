@@ -11,6 +11,8 @@ export default defineConfig({
     sitemap({ filter: (page) => !/\/(privacidad|404)$/.test(page) }),
   ],
   trailingSlash: 'never',
+  // Sin la barra de herramientas de Astro en `npm run dev` (tapa la barra CTA móvil).
+  devToolbar: { enabled: false },
   build: {
     // Una sola página: el CSS va inline y no bloquea el render con una petición extra.
     inlineStylesheets: 'always',

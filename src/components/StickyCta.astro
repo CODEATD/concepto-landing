@@ -3,13 +3,39 @@ import Button from './ui/Button.astro';
 import Icon from './ui/Icon.astro';
 ---
 
-<!-- Barra CTA fija: solo ≤760px -->
-<div class="sticky-cta">
+<!-- Barra CTA fija: solo ≤760px. Aparece al pasar el CTA del hero y se oculta en el CTA final. -->
+<div class="sticky-cta is-hidden" data-sticky-cta>
   <Button cta="sticky" class="sticky-cta__btn">
     <Icon name="chat" size={18} strokeWidth={2.2} />
     AGENDAR ASESORÍA GRATIS
   </Button>
 </div>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-sticky-cta]');
+  const heroCta = document.querySelector('[data-cta="hero"]');
+  const finalCta = document.querySelector('[data-cta="final"]');
+
+  if (bar && heroCta) {
+    let pastHero = false;
+    let atFinal = false;
+
+    // Solo se muestra cuando el CTA del hero ya quedó arriba y el CTA final no está en pantalla,
+    // así nunca hay dos botones amarillos a la vez.
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target === heroCta) {
+          pastHero = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        } else {
+          atFinal = entry.isIntersecting;
+        }
+      }
+      bar.classList.toggle('is-hidden', !pastHero || atFinal);
+    });
+    observer.observe(heroCta);
+    if (finalCta) observer.observe(finalCta);
+  }
+</script>
 
 <style>
   .sticky-cta {
@@ -19,10 +45,31 @@ import Icon from './ui/Icon.astro';
     z-index: 40;
     padding: 12px 16px 16px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.92) 35%);
+    transition:
+      opacity 0.4s var(--ease-out),
+      transform 0.4s var(--ease-out),
+      visibility 0s;
+  }
+  .sticky-cta.is-hidden {
+    opacity: 0;
+    transform: translateY(24px);
+    visibility: hidden;
+    pointer-events: none;
+    /* Al ocultarse, visibility cambia al final para que se vea el fade */
+    transition:
+      opacity 0.3s var(--ease-out),
+      transform 0.3s var(--ease-out),
+      visibility 0s 0.3s;
   }
   @media (max-width: 760px) {
     .sticky-cta {
       display: flex;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-cta,
+    .sticky-cta.is-hidden {
+      transform: none;
     }
   }
   .sticky-cta__btn {
