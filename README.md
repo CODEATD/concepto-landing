@@ -108,6 +108,11 @@ Para validar: define `META_CAPI_TEST_EVENT_CODE`, haz clic en un CTA y revisa _E
 Test events_. Ahí deben aparecer el evento del navegador y el del servidor, marcados como
 deduplicados.
 
+## Campaña en Meta
+
+Guía para el equipo de anuncios (qué se mide, qué datos hacen falta, checklist de lanzamiento):
+[`docs/campana-meta.md`](docs/campana-meta.md).
+
 ## Despliegue
 
 1. **GitHub:** crea el repositorio y sube `main`:
