@@ -153,6 +153,10 @@ a:hover {
 @supports (animation-timeline: view()) {
   .rv {
     animation: fu linear both;
+  }
+  /* Regla aparte a propósito: si van juntas, el minificador mete view() dentro del shorthand
+     `animation`, que los navegadores descartan como inválido. */
+  :is(.rv) {
     animation-timeline: view();
     animation-range: entry 0% entry 35%;
   }
