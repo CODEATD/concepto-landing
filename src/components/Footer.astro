@@ -1,0 +1,45 @@
+---
+import { landing } from '@/data';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <!-- PROVISIONAL: reemplazar por el logo SVG oficial -->
+    <span class="footer__logo" translate="no">
+      CONCEPTO
+    </span>
+    <span>
+      © {year} {landing.site.brand} · <a href={landing.site.privacyUrl}>Política de privacidad</a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--graphite-black);
+  }
+  .footer__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 24px var(--gutter) 28px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--medium-gray);
+  }
+  .footer__logo {
+    font-family: var(--font-logo);
+    font-size: 22px;
+    letter-spacing: 0.3px;
+    color: var(--ash-black);
+  }
+  .footer a {
+    color: var(--dusty-gray);
+  }
+</style>

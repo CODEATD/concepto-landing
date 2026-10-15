@@ -1,0 +1,131 @@
+---
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+import Stats from './Stats.astro';
+---
+
+<section class="hero">
+  <div class="dots" aria-hidden="true"></div>
+  <div class="hero__glow" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <div class="hero__content">
+      <p class="badge fu">
+        <span class="badge__dot ping"></span>Servicio Todo Incluido
+      </p>
+      <h1 class="hero__title fu">
+        Tu equipo de <span class="silver serif hero__serif">Marketing</span> completo
+        <br class="br-d" />a un precio <span class="accent">irresistible.</span>
+      </h1>
+      <p class="hero__lead fu">
+        Sin contratar 5 proveedores por separado, sin pagar sueldos internos y sin excusas. Un solo
+        equipo estratégico a cargo de tu diseño, videos, anuncios, sitio web y automatizaciones.
+      </p>
+      <div class="hero__actions fu">
+        <Button cta="hero" class="hero__cta">
+          Agendar asesoría gratis
+          <Icon name="arrow-right" size={18} strokeWidth={2.2} />
+        </Button>
+        <Button variant="ghost" href="#pilares" class="hero__ghost">
+          Ver qué incluye
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <Stats />
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero__glow {
+    position: absolute;
+    top: -160px;
+    right: -120px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(250, 217, 26, 0.12), transparent 65%);
+    pointer-events: none;
+  }
+  .hero__inner {
+    position: relative;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 48px var(--gutter) 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 64px;
+    align-items: center;
+  }
+  .hero__content {
+    flex: 999 1 340px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .badge {
+    margin: 0;
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border: 1px solid var(--smoky-black);
+    border-radius: var(--r-pill);
+    background: var(--jet-black);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--whisper-gray);
+  }
+  .badge__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--yellow-500);
+  }
+
+  .hero__title {
+    margin: 0;
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    animation-delay: 0.08s;
+  }
+  .hero__serif {
+    letter-spacing: -0.02em;
+  }
+  .hero__lead {
+    margin: 0;
+    max-width: 580px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--light-gray);
+    animation-delay: 0.16s;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    animation-delay: 0.24s;
+  }
+  .hero__cta {
+    gap: 10px;
+    min-height: 56px;
+    padding: 0 28px;
+    font-size: 16px;
+  }
+  .hero__ghost {
+    min-height: 56px;
+    padding: 0 24px;
+    font-size: 15px;
+  }
+</style>

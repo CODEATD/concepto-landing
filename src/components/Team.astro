@@ -1,0 +1,111 @@
+---
+import { landing } from '@/data';
+import Icon from './ui/Icon.astro';
+import TeamCard from './TeamCard.astro';
+---
+
+<section class="team-section" aria-labelledby="team-title">
+  <div class="team__head rv">
+    <span class="eyebrow">Equipo y autoridad</span>
+    <h2 id="team-title" class="h2">
+      El equipo <span class="silver serif">detrás</span> de tu marca
+    </h2>
+    <p class="team__lead">
+      Especialistas senior operando tu estrategia día a día, bajo la dirección directa de nuestros
+      líderes.
+    </p>
+  </div>
+
+  <ul class="team" role="list" tabindex="0" aria-label="Integrantes del equipo">
+    {landing.team.map((member) => (
+      <TeamCard {...member} />
+    ))}
+  </ul>
+
+  <p class="team__hint">
+    <Icon name="arrow-right" size={14} />
+    Desliza para conocer al equipo
+  </p>
+
+  <div class="quote-wrap rv">
+    <blockquote class="quote">
+      “No vendemos piezas sueltas de contenido;{' '}
+      <span class="silver serif">construimos y operamos</span> el{' '}
+      <span class="quote__accent">ecosistema digital</span> que tu empresa necesita para escalar.”
+    </blockquote>
+  </div>
+</section>
+
+<style>
+  .team-section {
+    padding: 56px 0;
+  }
+  .team__head {
+    max-width: var(--container);
+    margin: 0 auto 28px;
+    padding: 0 var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .team__lead {
+    margin: 0;
+    max-width: 620px;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--light-gray);
+  }
+
+  /* Carrusel horizontal con scroll-snap */
+  .team {
+    list-style: none;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 var(--gutter) 8px;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--gutter);
+    scrollbar-width: none;
+  }
+  .team::-webkit-scrollbar {
+    display: none;
+  }
+  .team:focus-visible {
+    outline: 2px solid var(--yellow-500);
+    outline-offset: 3px;
+  }
+
+  .team__hint {
+    max-width: var(--container);
+    margin: 6px auto 0;
+    padding: 0 var(--gutter);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--medium-gray);
+  }
+
+  .quote-wrap {
+    max-width: var(--container);
+    margin: 36px auto 0;
+    padding: 0 var(--gutter);
+  }
+  .quote {
+    margin: 0;
+    padding: 28px 24px;
+    border-radius: 24px;
+    background: var(--ink-black);
+    border: 1px solid var(--jet-gray);
+    font-size: clamp(20px, 2.6vw, 30px);
+    line-height: 1.35;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--whisper-gray);
+  }
+  .quote__accent {
+    color: var(--yellow-500);
+  }
+</style>

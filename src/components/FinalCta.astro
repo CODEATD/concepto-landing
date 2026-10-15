@@ -1,0 +1,76 @@
+---
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+---
+
+<section class="final">
+  <div class="final__box rv">
+    <div class="dots" aria-hidden="true"></div>
+    <h2 class="final__title">
+      Dale a tu empresa la estructura de marketing{' '}
+      <span class="serif final__accent">que merece.</span>
+    </h2>
+    <p class="final__lead">
+      Conversa 15 minutos directamente con <strong>Alain Landini</strong> y evalúa si tu empresa
+      califica para el Servicio Todo Incluido.
+    </p>
+    <Button cta="final" class="final__cta">
+      AGENDAR ASESORÍA GRATIS
+      <Icon name="arrow-right" size={18} strokeWidth={2.2} />
+    </Button>
+  </div>
+</section>
+
+<style>
+  .final {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 24px var(--gutter) 64px;
+  }
+  .final__box {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--r-card-lg);
+    border: 1px solid var(--smoky-black);
+    background: var(--ink-black);
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .final__title {
+    position: relative;
+    margin: 0;
+    max-width: 760px;
+    font-size: clamp(32px, 4.8vw, 56px);
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+  }
+  .final__accent {
+    color: var(--yellow-500);
+  }
+  .final__lead {
+    position: relative;
+    margin: 0;
+    max-width: 560px;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--light-gray);
+  }
+  .final__lead strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+  .final__cta {
+    position: relative;
+    justify-content: center;
+    gap: 10px;
+    min-height: 58px;
+    padding: 0 30px;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+  }
+</style>
