@@ -1,4 +1,5 @@
 ---
+import { landing } from '@/data';
 import Button from './ui/Button.astro';
 import Icon from './ui/Icon.astro';
 ---
@@ -6,9 +7,14 @@ import Icon from './ui/Icon.astro';
 <header class="header">
   <div class="header__inner">
     <!-- PROVISIONAL: reemplazar por el logo SVG oficial -->
-    <span class="logo" translate="no">
+    <a
+      class="logo"
+      href={landing.site.mainSite}
+      translate="no"
+      aria-label={`${landing.site.brand}: ir al sitio principal`}
+    >
       CONCEPTO
-    </span>
+    </a>
     <Button cta="header" class="header__cta">
       ¡Hablemos!
       <Icon name="arrow-right" size={16} strokeWidth={2.2} />
@@ -41,6 +47,7 @@ import Icon from './ui/Icon.astro';
     line-height: 1;
     letter-spacing: 0.3px;
     color: var(--yellow-500);
+    text-decoration: none;
   }
   .header__cta {
     gap: 8px;

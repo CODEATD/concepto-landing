@@ -87,11 +87,11 @@ mensaje claro.
 
 Copia `.env.example` a `.env` en local. En Netlify: _Site configuration → Environment variables_.
 
-| Variable                    | Uso                                                              |
-| :-------------------------- | :--------------------------------------------------------------- |
-| `PUBLIC_META_PIXEL_ID`      | ID del Pixel. Vacío = sin Pixel ni CAPI                          |
-| `META_CAPI_TOKEN`           | Token de la API de Conversiones (secreto, solo en la función)    |
-| `META_CAPI_TEST_EVENT_CODE` | Opcional: código de prueba del Events Manager. Quitar al validar |
+| Variable                    | Uso                                                                                                            |
+| :-------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| `PUBLIC_META_PIXEL_ID`      | ID del Pixel. Vacío = sin Pixel ni CAPI. En producción: `netlify.toml` (página) y UI de Netlify (función CAPI) |
+| `META_CAPI_TOKEN`           | Token de la API de Conversiones (secreto, solo en la función)                                                  |
+| `META_CAPI_TEST_EVENT_CODE` | Opcional: código de prueba del Events Manager. Quitar al validar                                               |
 
 ## Medición
 
@@ -144,4 +144,5 @@ Guía para el equipo de anuncios (qué se mide, qué datos hacen falta, checklis
 - [ ] Validar los precios de ejemplo de las burbujas
 - [ ] Descripción de "Planificación estratégica" (provisional)
 - [ ] Revisión legal de `/privacidad` (borrador)
-- [ ] ID del Pixel y token de CAPI en Netlify
+- [x] ID del Pixel (en `netlify.toml`)
+- [ ] Token de CAPI y `PUBLIC_META_PIXEL_ID` en la UI de Netlify (para la función del servidor)
