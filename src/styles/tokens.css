@@ -1,0 +1,59 @@
+/* Concepto — tokens oficiales extraídos de Framer (proyecto elconceptodigital.com) */
+:root {
+  /* Fondos */
+  --black: #000000; /* Black/Black — fondo principal */
+  --ink-black: #0c0c0c; /* Black/Ink Black — secciones profundas, stats, CTA final */
+  --jet-black: #0e0e0e; /* Black/Jet Black — tarjetas */
+  --dark-gray: #1b1b1b; /* Gray/Dark Gray */
+  --graphite-black: #1d1d1d; /* Black/Graphite Black — fondos de íconos */
+  --charcoal-black: #262626;
+  --jet-gray: #292929; /* bordes suaves / separadores */
+  --carbon-black: #2b2b2b;
+  --smoky-black: #2f2f2f; /* bordes de tarjetas */
+  --charcoal-gray: #333333; /* bordes activos */
+  --ash-gray: #454545;
+  --ash-black: #494949;
+
+  /* Textos */
+  --white: #ffffff; /* H1/H2 */
+  --whisper-gray: #eeeeee; /* H3–H6, P16/P20 */
+  --mercury: #e7e7e7;
+  --light-gray: #cecece; /* párrafos destacados */
+  --silver-gray: #bbbbbb;
+  --dusty-gray: #999999; /* P12/P14 */
+  --medium-gray: #6e6e6e; /* metadatos */
+
+  /* Acento */
+  --yellow-500: #fad91a; /* CTA, acentos */
+  --yellow-400: #fbe148; /* hover */
+
+  /* Overlays */
+  --white-5: rgba(255, 255, 255, 0.05);
+  --white-7: rgba(255, 255, 255, 0.07);
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-15: rgba(255, 255, 255, 0.15);
+  --white-20: rgba(255, 255, 255, 0.2);
+  --black-30: rgba(0, 0, 0, 0.3);
+
+  /* Acento con transparencia (valores de la referencia) */
+  --yellow-10: rgba(250, 217, 26, 0.1);
+  --yellow-35: rgba(250, 217, 26, 0.35);
+
+  /* Tipografía — las familias las registra la Fonts API en astro.config.mjs */
+  --font-sans: var(--font-inter); /* UI, títulos (500), párrafos */
+  --font-serif: var(--font-playfair); /* acentos en cursiva 400 */
+  --font-logo: var(--font-bebas); /* PROVISIONAL: reemplazar por el SVG del logo */
+
+  /* Radios */
+  --r-pill: 999px;
+  --r-card: 20px;
+  --r-card-lg: 28px;
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-cursor: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: 20px;
+}

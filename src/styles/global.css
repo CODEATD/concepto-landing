@@ -1,0 +1,246 @@
+/*
+ * Estilos compartidos entre secciones. Valores y keyframes copiados de la referencia aprobada
+ * (concepto-landing-handoff/reference/index.html); lo específico de cada sección vive en su componente.
+ */
+
+body {
+  margin: 0;
+  background: var(--black);
+}
+
+a {
+  color: var(--yellow-500);
+}
+a:hover {
+  color: var(--yellow-400);
+}
+
+.page {
+  width: 100%;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Tipografía de sección ---------- */
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--yellow-500);
+  text-transform: uppercase;
+}
+
+.h2 {
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 48px);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+/* Palabra en Playfair cursiva */
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Texto plateado */
+.silver {
+  background: linear-gradient(180deg, #ffffff 15%, #9c9c9c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.accent {
+  color: var(--yellow-500);
+  font-weight: 600;
+}
+
+/* ---------- Keyframes compartidos ---------- */
+
+@keyframes fu {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(250, 217, 26, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 9px rgba(250, 217, 26, 0);
+  }
+}
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(250, 217, 26, 0);
+  }
+  50% {
+    box-shadow: 0 0 32px 0 rgba(250, 217, 26, 0.22);
+  }
+}
+@keyframes drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 28px 28px;
+  }
+}
+@keyframes sheen {
+  0% {
+    transform: translateX(-120%);
+  }
+  60%,
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.fu {
+  animation: fu 0.8s var(--ease-out) both;
+}
+.ping {
+  animation: ping 2.2s ease-out infinite;
+}
+.glow {
+  animation: glow 3.6s ease-in-out infinite;
+}
+
+/* Campo de puntos que deriva */
+.dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1.4px);
+  background-size: 14px 14px;
+  animation: drift 18s linear infinite;
+  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 75% 30%, #000 15%, transparent 72%);
+  mask-image: radial-gradient(ellipse 80% 55% at 75% 30%, #000 15%, transparent 72%);
+}
+
+/* Aparición al hacer scroll (sin soporte = visibles) */
+@supports (animation-timeline: view()) {
+  .rv {
+    animation: fu linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+
+/* ---------- Botones ---------- */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--r-pill);
+  background: var(--yellow-500);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  background-color: var(--yellow-400);
+  color: #000;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: sheen 4.5s ease-in-out infinite;
+}
+
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--charcoal-gray);
+  color: var(--whisper-gray);
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+.ghost:hover {
+  border-color: var(--yellow-500);
+  color: var(--yellow-500);
+}
+
+.btn:focus-visible,
+.ghost:focus-visible {
+  outline: 2px solid var(--yellow-500);
+  outline-offset: 3px;
+}
+
+/* ---------- Tarjetas ---------- */
+
+.card {
+  border: 1px solid var(--smoky-black);
+  background: var(--jet-black);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+.card:hover {
+  border-color: var(--ash-gray);
+  transform: translateY(-3px);
+}
+
+/* ---------- Utilidades de breakpoint ---------- */
+
+@media (max-width: 760px) {
+  .br-d {
+    display: none;
+  }
+  .hide-sm {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

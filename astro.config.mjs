@@ -1,10 +1,12 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://todoincluido.elconceptodigital.com',
   output: 'static',
+  integrations: [sitemap()],
   trailingSlash: 'never',
   build: {
     // Una sola página: el CSS va inline y no bloquea el render con una petición extra.
