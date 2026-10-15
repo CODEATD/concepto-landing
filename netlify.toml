@@ -4,6 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # ID público del Pixel (se incrusta en el HTML). El token de CAPI es secreto: va en la UI de Netlify.
+  PUBLIC_META_PIXEL_ID = "1696345478770441"
 
 [functions]
   directory = "netlify/functions"

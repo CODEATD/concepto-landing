@@ -7,7 +7,11 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="footer__inner">
     <!-- PROVISIONAL: reemplazar por el logo SVG oficial -->
-    <span class="footer__logo" aria-hidden="true"></span>
+    <a
+      class="footer__logo"
+      href={landing.site.mainSite}
+      aria-label={`${landing.site.brand}: ir al sitio principal`}
+    ></a>
     <span>
       © {year} {landing.site.brand} · <a href={landing.site.privacyUrl}>Política de privacidad</a>
     </span>
@@ -33,13 +37,14 @@ const year = new Date().getFullYear();
   }
   /* Wordmark decorativo en tono apagado: los logotipos están exentos del contraste WCAG y la marca ya
      se lee en el copyright. Va como contenido generado para que los auditores no lo midan como texto. */
-  .footer__logo {
+  .footer .footer__logo {
     font-family: var(--font-logo);
     font-size: 22px;
     letter-spacing: 0.3px;
     color: var(--ash-black);
+    text-decoration: none;
   }
-  .footer__logo::before {
+  .footer .footer__logo::before {
     content: 'CONCEPTO';
   }
   .footer a {

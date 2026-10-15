@@ -28,15 +28,15 @@ optimizar.
 
 ## Lo que necesitamos del equipo de Meta
 
-No hace falta que nos pasen ningún script: el código del Pixel ya está en la página. Solo necesitamos
-dos datos del **Events Manager**:
+No hace falta que nos pasen ningún script: el código del Pixel ya está en la página, con el ID
+`1696345478770441`. Solo falta un dato del **Events Manager** para la API de Conversiones:
 
-1. **ID del Pixel** (dataset): un número de 15–16 dígitos.
-2. **Token de acceso de la API de Conversiones**: _Events Manager → el Pixel → Configuración →
-   API de Conversiones → Generar token de acceso_.
+- **Token de acceso de la API de Conversiones**: _Events Manager → el Pixel → Configuración →
+  API de Conversiones → Generar token de acceso_.
 
-Con eso los cargamos en Netlify y volvemos a publicar. Agregar solo el dominio no basta: sin el ID
-del Pixel la página no mide nada.
+Con el token lo cargamos en Netlify (`META_CAPI_TOKEN`, y también `PUBLIC_META_PIXEL_ID`, porque la
+función del servidor lo lee desde ahí) y volvemos a publicar. Sin el token el Pixel mide igual
+desde el navegador; lo que no se envía es el evento del servidor.
 
 **Verificar el dominio** (recomendado): en _Business Settings → Seguridad de la marca → Dominios_
 agreguen `elconceptodigital.com` y elijan verificación por **registro TXT de DNS**. Nos pasan el
@@ -63,7 +63,7 @@ valor y lo añadimos en cPanel. Se verifica el dominio principal y eso cubre el 
 
 ## Antes de lanzar (checklist)
 
-- [ ] ID del Pixel y token de CAPI cargados en Netlify y sitio publicado de nuevo
+- [ ] Token de CAPI y `PUBLIC_META_PIXEL_ID` cargados en Netlify y sitio publicado de nuevo
 - [ ] Prueba con _Events Manager → Eventos de prueba_: entrar a la página, pulsar un botón y ver
       `PageView` y `Contact` (navegador + servidor, marcados como deduplicados)
 - [ ] Quitar `META_CAPI_TEST_EVENT_CODE` de Netlify al terminar la prueba
