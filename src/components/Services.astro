@@ -1,0 +1,51 @@
+---
+import { landing } from '@/data';
+import ServiceCard from './ServiceCard.astro';
+---
+
+<section id="pilares" class="services">
+  <div class="services__head rv">
+    <span class="eyebrow">Servicios incluidos</span>
+    <h2 class="h2">
+      Lo que tu empresa recibe <br class="br-d" />
+      <span class="silver serif">desde el primer mes</span>
+    </h2>
+  </div>
+  <div class="services__grid">
+    {landing.services.map((service) => (
+      <ServiceCard {...service} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .services {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 56px var(--gutter);
+    scroll-margin-top: 69px; /* alto de la cabecera fija */
+  }
+  .services__head {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+    max-width: 720px;
+  }
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+  }
+
+  @media (max-width: 760px) {
+    .services__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    /* Si quedan impares, la última tarjeta ocupa toda la fila */
+    .services__grid > :global(:last-child:nth-child(odd)) {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

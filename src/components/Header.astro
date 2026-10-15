@@ -1,0 +1,51 @@
+---
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+---
+
+<header class="header">
+  <div class="header__inner">
+    <!-- PROVISIONAL: reemplazar por el logo SVG oficial -->
+    <span class="logo" translate="no">
+      CONCEPTO
+    </span>
+    <Button cta="header" class="header__cta">
+      ¡Hablemos!
+      <Icon name="arrow-right" size={16} strokeWidth={2.2} />
+    </Button>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--white-7);
+  }
+  .header__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 12px var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .logo {
+    font-family: var(--font-logo);
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: 0.3px;
+    color: var(--yellow-500);
+  }
+  .header__cta {
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px;
+    font-size: 14px;
+  }
+</style>

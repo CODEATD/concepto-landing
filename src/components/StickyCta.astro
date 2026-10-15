@@ -1,0 +1,37 @@
+---
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+---
+
+<!-- Barra CTA fija: solo ≤760px -->
+<div class="sticky-cta">
+  <Button cta="sticky" class="sticky-cta__btn">
+    <Icon name="chat" size={18} strokeWidth={2.2} />
+    AGENDAR ASESORÍA GRATIS
+  </Button>
+</div>
+
+<style>
+  .sticky-cta {
+    display: none;
+    position: sticky;
+    bottom: 0;
+    z-index: 40;
+    padding: 12px 16px 16px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.92) 35%);
+  }
+  @media (max-width: 760px) {
+    .sticky-cta {
+      display: flex;
+    }
+  }
+  .sticky-cta__btn {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    min-height: 54px;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+  }
+</style>

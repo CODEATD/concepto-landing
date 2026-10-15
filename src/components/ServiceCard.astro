@@ -1,0 +1,79 @@
+---
+import type { Service } from '@/data';
+import Icon from './ui/Icon.astro';
+
+type Props = Service;
+
+const { icon, title, description } = Astro.props;
+---
+
+<article class="service card rv">
+  <div class="service__icon">
+    <Icon name={icon} size={22} strokeWidth={1.8} />
+  </div>
+  <div class="service__body">
+    <h3 class="service__title">{title}</h3>
+    <p class="service__desc">{description}</p>
+  </div>
+</article>
+
+<style>
+  .service {
+    border-radius: var(--r-card);
+    padding: 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .service__icon {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--graphite-black);
+    color: var(--yellow-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+  .service:hover .service__icon {
+    background: var(--yellow-500);
+    color: #000;
+  }
+  .service__body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .service__title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+  .service__desc {
+    margin: 0;
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--dusty-gray);
+  }
+
+  @media (max-width: 760px) {
+    .service {
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 18px;
+    }
+    .service__title {
+      font-size: 15px;
+      line-height: 20px;
+    }
+    .service__desc {
+      display: none;
+    }
+  }
+</style>

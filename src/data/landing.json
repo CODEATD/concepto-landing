@@ -61,15 +61,60 @@
     }
   ],
   "team": [
-    { "name": "Alain Landini", "role": "Director General", "area": "Liderazgo", "photo": "alain-landini" },
-    { "name": "Romano Landini", "role": "Web & Automatizaciones", "area": "Liderazgo", "photo": null },
-    { "name": "Ariadna Pulido", "role": "Lead Graphic Designer", "area": "Liderazgo", "photo": "ariadna-pulido" },
-    { "name": "Adolfo Torres", "role": "Lead Dev & UI/UX", "area": "Desarrollo", "photo": "adolfo-torres" },
-    { "name": "Marielsy Cermeño", "role": "Account Manager", "area": "Gestión", "photo": "marielsy-cermeno" },
-    { "name": "Nairene Marín", "role": "Social Media Lead", "area": "Redes", "photo": "nairene-marin" },
-    { "name": "Zara Chacín", "role": "Content & Community Manager", "area": "Redes", "photo": "zara-chacin" },
-    { "name": "Saraí Jiménez", "role": "Graphic Designer", "area": "Diseño", "photo": "sarai-jimenez" },
-    { "name": "Victor Parra", "role": "Video & Motion Editor", "area": "Producción", "photo": "victor-parra" }
+    {
+      "name": "Alain Landini",
+      "role": "Director General",
+      "area": "Liderazgo",
+      "photo": "alain-landini"
+    },
+    {
+      "name": "Romano Landini",
+      "role": "Web & Automatizaciones",
+      "area": "Liderazgo",
+      "photo": null
+    },
+    {
+      "name": "Ariadna Pulido",
+      "role": "Lead Graphic Designer",
+      "area": "Liderazgo",
+      "photo": "ariadna-pulido"
+    },
+    {
+      "name": "Adolfo Torres",
+      "role": "Lead Dev & UI/UX",
+      "area": "Desarrollo",
+      "photo": "adolfo-torres"
+    },
+    {
+      "name": "Marielsy Cermeño",
+      "role": "Account Manager",
+      "area": "Gestión",
+      "photo": "marielsy-cermeno"
+    },
+    {
+      "name": "Nairene Marín",
+      "role": "Social Media Lead",
+      "area": "Redes",
+      "photo": "nairene-marin"
+    },
+    {
+      "name": "Zara Chacín",
+      "role": "Content & Community Manager",
+      "area": "Redes",
+      "photo": "zara-chacin"
+    },
+    {
+      "name": "Saraí Jiménez",
+      "role": "Graphic Designer",
+      "area": "Diseño",
+      "photo": "sarai-jimenez"
+    },
+    {
+      "name": "Victor Parra",
+      "role": "Video & Motion Editor",
+      "area": "Producción",
+      "photo": "victor-parra"
+    }
   ],
   "faqs": [
     {
@@ -97,10 +142,35 @@
     ]
   },
   "providers": [
-    { "sender": "Diseñador freelance", "before": "Soy diseñador y cobro ", "amount": "$800.000 CLP", "after": " al mes" },
-    { "sender": "Editor de video", "before": "Edito tus reels por ", "amount": "$600.000 CLP", "after": " mensuales" },
-    { "sender": "Trafficker digital", "before": "Gestiono tus anuncios: ", "amount": "$700.000 CLP", "after": " + % de la pauta" },
-    { "sender": "Desarrollador web", "before": "Mantengo tu web por ", "amount": "$350.000 CLP", "after": " al mes" },
-    { "sender": "Consultor CRM", "before": "Te implemento el CRM por ", "amount": "$900.000 CLP", "after": "" }
+    {
+      "sender": "Diseñador freelance",
+      "before": "Soy diseñador y cobro ",
+      "amount": "$800.000 CLP",
+      "after": " al mes"
+    },
+    {
+      "sender": "Editor de video",
+      "before": "Edito tus reels por ",
+      "amount": "$600.000 CLP",
+      "after": " mensuales"
+    },
+    {
+      "sender": "Trafficker digital",
+      "before": "Gestiono tus anuncios: ",
+      "amount": "$700.000 CLP",
+      "after": " + % de la pauta"
+    },
+    {
+      "sender": "Desarrollador web",
+      "before": "Mantengo tu web por ",
+      "amount": "$350.000 CLP",
+      "after": " al mes"
+    },
+    {
+      "sender": "Consultor CRM",
+      "before": "Te implemento el CRM por ",
+      "amount": "$900.000 CLP",
+      "after": ""
+    }
   ]
 }
