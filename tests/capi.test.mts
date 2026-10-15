@@ -12,7 +12,7 @@ globalThis.fetch = (async (url: string, init: RequestInit) => {
   return new Response('{}', { status: 200 });
 }) as typeof fetch;
 
-const SITE = 'https://todoincluido.elconceptodigital.com';
+const SITE = 'https://allinone.elconceptodigital.com';
 
 function request(body: unknown) {
   return new Request(`${SITE}/api/capi`, {
