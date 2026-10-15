@@ -33,12 +33,14 @@ const year = new Date().getFullYear();
   }
   /* Wordmark decorativo en tono apagado: los logotipos están exentos del contraste WCAG y la marca ya
      se lee en el copyright. Va como contenido generado para que los auditores no lo midan como texto. */
-  .footer__logo::before {
-    content: 'CONCEPTO';
+  .footer__logo {
     font-family: var(--font-logo);
     font-size: 22px;
     letter-spacing: 0.3px;
     color: var(--ash-black);
+  }
+  .footer__logo::before {
+    content: 'CONCEPTO';
   }
   .footer a {
     color: var(--dusty-gray);

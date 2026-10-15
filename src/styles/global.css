@@ -109,12 +109,14 @@ a:hover {
     box-shadow: 0 0 32px 0 rgba(250, 217, 26, 0.22);
   }
 }
+/* La referencia anima background-position (0 0 → 28px 28px). Aquí se desplaza la trama con
+   transform: mismo recorrido y ritmo, pero corre en el compositor sin repintar cada frame. */
 @keyframes drift {
   from {
-    background-position: 0 0;
+    transform: translate(0, 0);
   }
   to {
-    background-position: 28px 28px;
+    transform: translate(28px, 28px);
   }
 }
 @keyframes sheen {
@@ -141,12 +143,19 @@ a:hover {
 .dots {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 75% 30%, #000 15%, transparent 72%);
+  mask-image: radial-gradient(ellipse 80% 55% at 75% 30%, #000 15%, transparent 72%);
+}
+/* La máscara queda fija en .dots; la trama (una celda de 28px más grande) es la que se mueve. */
+.dots::before {
+  content: '';
+  position: absolute;
+  inset: -28px 0 0 -28px;
   background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1.4px);
   background-size: 14px 14px;
   animation: drift 18s linear infinite;
-  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 75% 30%, #000 15%, transparent 72%);
-  mask-image: radial-gradient(ellipse 80% 55% at 75% 30%, #000 15%, transparent 72%);
 }
 
 /* Aparición al hacer scroll (sin soporte = visibles) */
@@ -243,6 +252,7 @@ a:hover {
 
 @media (prefers-reduced-motion: reduce) {
   *,
+  *::before,
   *::after {
     animation: none !important;
     transition: none !important;
