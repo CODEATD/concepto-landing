@@ -1,0 +1,86 @@
+---
+/** Metadatos de la página: título, descripción, canonical, Open Graph, Twitter y JSON-LD. */
+import { landing } from '@/data';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Ruta de la imagen social dentro de `public/`. */
+  image?: string;
+  noindex?: boolean;
+  /** Incluye los datos estructurados de la oferta y las FAQ (solo en la landing). */
+  structuredData?: boolean;
+}
+
+const {
+  title = landing.site.title,
+  description = landing.site.description,
+  image = '/og-image.jpg',
+  noindex = false,
+  structuredData = false,
+} = Astro.props;
+
+const { site, price, faqs, whatsapp } = landing;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${site.mainSite}/#organization`,
+      name: site.brand,
+      url: site.mainSite,
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: `+${whatsapp.number}`,
+        contactType: 'sales',
+        availableLanguage: 'es',
+      },
+    },
+    {
+      '@type': 'Service',
+      name: 'Servicio Todo Incluido',
+      description: site.description,
+      provider: { '@id': `${site.mainSite}/#organization` },
+      areaServed: 'CL',
+      offers: {
+        '@type': 'Offer',
+        price: price.value,
+        priceCurrency: price.currency,
+        url: canonical.href,
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, follow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={site.locale} />
+<meta property="og:site_name" content={site.brand} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+{structuredData && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

@@ -1,0 +1,59 @@
+---
+/**
+ * Íconos de trazo (24×24) usados en la landing. Siempre decorativos: `aria-hidden`.
+ * Para agregar uno, añade su contenido SVG al mapa `icons`.
+ */
+import type { HTMLAttributes } from 'astro/types';
+
+const icons = {
+  'arrow-right': '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  check: '<path d="M20 6 9 17l-5-5"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  close: '<path d="M18 6 6 18M6 6l12 12"/>',
+  chat: '<path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/>',
+  target:
+    '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/>',
+  'pen-tool':
+    '<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/>',
+  'file-text':
+    '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/>',
+  scissors:
+    '<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/>',
+  send: '<path d="M3 11l18-8-8 18-2-8-8-2z"/>',
+  'shield-check':
+    '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',
+  zap: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+} as const;
+
+export type IconName = keyof typeof icons;
+
+interface Props extends HTMLAttributes<'svg'> {
+  name: string;
+  size?: number;
+  strokeWidth?: number;
+  /** Color del trazo; por defecto hereda el color del texto. */
+  stroke?: string;
+}
+
+const { name, size = 24, strokeWidth = 2, stroke = 'currentColor', ...rest } = Astro.props;
+
+if (!(name in icons)) {
+  throw new Error(`Icon: "${name}" no existe. Disponibles: ${Object.keys(icons).join(', ')}`);
+}
+const body = icons[name as IconName];
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke={stroke}
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  {...rest}
+  set:html={body}
+/>

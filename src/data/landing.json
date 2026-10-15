@@ -1,0 +1,106 @@
+{
+  "site": {
+    "title": "Concepto · Servicio Todo Incluido",
+    "description": "Tu equipo de marketing completo a un precio irresistible: diseño, guiones, edición de video, pauta, web y CRM por un pago mensual.",
+    "locale": "es_CL",
+    "brand": "Concepto",
+    "mainSite": "https://elconceptodigital.com",
+    "privacyUrl": "/privacidad"
+  },
+  "whatsapp": {
+    "number": "56992778534",
+    "display": "+56 9 9277 8534",
+    "message": "Hola Alain, vengo de la web y quiero agendar mi asesoría gratis para el Servicio Todo Incluido"
+  },
+  "price": {
+    "amount": "$1.980.000",
+    "value": 1980000,
+    "currency": "CLP",
+    "period": "mes"
+  },
+  "stats": [
+    { "value": "+100", "label": "Proyectos lanzados", "highlight": true },
+    { "value": "5+", "label": "Años de experiencia" },
+    { "value": "100%", "label": "Operación remota" }
+  ],
+  "services": [
+    {
+      "icon": "target",
+      "title": "Planificación estratégica",
+      "description": "Estrategia y calendario mensual de marketing alineados a los objetivos de tu negocio."
+    },
+    {
+      "icon": "pen-tool",
+      "title": "Diseño gráfico y UI/UX",
+      "description": "Banners, presentaciones y material visual de alto impacto que proyecta autoridad."
+    },
+    {
+      "icon": "file-text",
+      "title": "Grabación de contenido y guiones",
+      "description": "Te entregamos la estructura exacta de lo que debes decir frente a la cámara para enganchar a clientes de alto valor."
+    },
+    {
+      "icon": "scissors",
+      "title": "Edición de video de alta conversión",
+      "description": "Editamos tus reels y anuncios con ritmo dinámico enfocado en retener la atención de gerentes y dueños."
+    },
+    {
+      "icon": "send",
+      "title": "Gestión de pauta (Meta Ads y Google Ads)",
+      "description": "Montaje, segmentación y optimización continua de campañas para atraer prospectos listos para comprar."
+    },
+    {
+      "icon": "shield-check",
+      "title": "Mantenimiento y optimización web",
+      "description": "Tu plataforma protegida, rápida y optimizada para convertir cada visita en una oportunidad de negocio."
+    },
+    {
+      "icon": "zap",
+      "title": "CRM y automatizaciones",
+      "description": "Tus prospectos directo a WhatsApp o a tu equipo de ventas en segundos, sin margen de error."
+    }
+  ],
+  "team": [
+    { "name": "Alain Landini", "role": "Director General", "area": "Liderazgo", "photo": "alain-landini" },
+    { "name": "Romano Landini", "role": "Web & Automatizaciones", "area": "Liderazgo", "photo": null },
+    { "name": "Ariadna Pulido", "role": "Lead Graphic Designer", "area": "Liderazgo", "photo": "ariadna-pulido" },
+    { "name": "Adolfo Torres", "role": "Lead Dev & UI/UX", "area": "Desarrollo", "photo": "adolfo-torres" },
+    { "name": "Marielsy Cermeño", "role": "Account Manager", "area": "Gestión", "photo": "marielsy-cermeno" },
+    { "name": "Nairene Marín", "role": "Social Media Lead", "area": "Redes", "photo": "nairene-marin" },
+    { "name": "Zara Chacín", "role": "Content & Community Manager", "area": "Redes", "photo": "zara-chacin" },
+    { "name": "Saraí Jiménez", "role": "Graphic Designer", "area": "Diseño", "photo": "sarai-jimenez" },
+    { "name": "Victor Parra", "role": "Video & Motion Editor", "area": "Producción", "photo": "victor-parra" }
+  ],
+  "faqs": [
+    {
+      "q": "¿Hay contrato de permanencia mínima?",
+      "a": "No. Trabajamos por ciclos mensuales. Nos enfocamos en entregar resultados desde el primer mes para que decidas quedarte por rentabilidad, no por un contrato."
+    },
+    {
+      "q": "¿Qué pasa si no sé qué grabar para los videos?",
+      "a": "Nosotros escribimos cada guion y te damos la pauta paso a paso para que solo tengas que hablar unos minutos frente a tu celular."
+    },
+    {
+      "q": "¿Cómo gestionamos el trabajo día a día?",
+      "a": "Tendrás comunicación fluida y directa con tu Account Manager asignada, con entregables semanales y reportes de métricas claras de negocio."
+    }
+  ],
+  "plan": {
+    "includes": [
+      "Planificación",
+      "Diseño",
+      "Grabación y guiones",
+      "Edición de video",
+      "Pauta Ads",
+      "Mantenimiento web",
+      "CRM / Automatizaciones"
+    ]
+  },
+  "providers": [
+    { "sender": "Diseñador freelance", "before": "Soy diseñador y cobro ", "amount": "$800.000 CLP", "after": " al mes" },
+    { "sender": "Editor de video", "before": "Edito tus reels por ", "amount": "$600.000 CLP", "after": " mensuales" },
+    { "sender": "Trafficker digital", "before": "Gestiono tus anuncios: ", "amount": "$700.000 CLP", "after": " + % de la pauta" },
+    { "sender": "Desarrollador web", "before": "Mantengo tu web por ", "amount": "$350.000 CLP", "after": " al mes" },
+    { "sender": "Consultor CRM", "before": "Te implemento el CRM por ", "amount": "$900.000 CLP", "after": "" }
+  ]
+}

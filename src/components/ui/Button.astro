@@ -1,0 +1,30 @@
+---
+/**
+ * Enlace con estilo de botón. Por defecto apunta a WhatsApp de Alain.
+ * `cta` identifica el botón en la medición (data-cta) y activa el tracking de conversión.
+ * El tamaño de cada instancia lo define la sección que lo usa vía `class`.
+ */
+import type { HTMLAttributes } from 'astro/types';
+import { buildWhatsAppUrl } from '@/lib/whatsapp';
+
+export type CtaId = 'header' | 'hero' | 'plan' | 'final' | 'sticky';
+
+interface Props extends HTMLAttributes<'a'> {
+  variant?: 'primary' | 'ghost';
+  cta?: CtaId;
+}
+
+const { variant = 'primary', cta, href, class: className, ...rest } = Astro.props;
+const isWhatsApp = !href;
+---
+
+<a
+  class:list={[variant === 'primary' ? 'btn' : 'ghost', className]}
+  href={href ?? buildWhatsAppUrl()}
+  data-cta={cta}
+  target={isWhatsApp ? '_blank' : undefined}
+  rel={isWhatsApp ? 'noopener' : undefined}
+  {...rest}
+>
+  <slot />
+</a>
